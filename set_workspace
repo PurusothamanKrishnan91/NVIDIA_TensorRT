@@ -1,0 +1,8 @@
+#! /bin/bash
+
+ROOT_DIR=$( dirname -- "$( readlink -f -- "${BASH_SOURCE[0]}" )" )
+
+WORKSPACE_DIR=$ROOT_DIR/workspace
+
+mkdir -p $WORKSPACE_DIR
+
