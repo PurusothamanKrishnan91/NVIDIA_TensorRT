@@ -37,10 +37,23 @@ CUDNN_NAME=$distro-${CUDNN_VERSION}_1.0-1_$architecture.deb
 CUDNN_DEB_NAME=$CUDNN_NATIVE_NAME$CUDNN_NAME
 CUDNN_DEB_PATH=$CUDNN_BASE_PATH/$CUDNN_VERSION/$CUDNN_NATIVE_PATH$CUDNN_NAME
 
+
+MAJOR=$(echo $CUDNN_VERSION | cut -f1 -d '.')
+MINOR=$(echo $CUDNN_VERSION | cut -f2 -d '.')
+RELEASE=$(echo $CUDNN_VERSION | cut -f3 -d '.')
+
+CUDNN_VERSION_FILE_PATH=cudnn_version_v$MAJOR.h
+find / -name $CUDNN_VERSION_FILE_PATH | grep $CUDNN_VERSION_FILE_PATH
+
+if [ $? -eq 0 ]; then
+  echo "CUDNN is installed in this system"
+  exit 0
+fi
+
 pushd  $WORKSPACE_DIR
 echo $CUDNN_DEB_PATH
 if [ -e $CUDNN_DEB_NAME ]; then
-  rm -rf $CUDNN_DEB_NAME
+  echo "File already exist. installing..!"
 else
   wget $CUDNN_DEB_PATH
 fi
