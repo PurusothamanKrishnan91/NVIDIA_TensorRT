@@ -1,4 +1,4 @@
-#/ /bin/bash
+#!/bin/bash
 
 set -ex
 CUDNN_VERSION="9.1.1"

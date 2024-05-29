@@ -1,4 +1,4 @@
-#/ /bin/bash
+#!/bin/bash
 
 set +ex
 CUDA_VERSION="12.2.2"
