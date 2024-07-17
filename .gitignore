@@ -1,1 +1,5 @@
+build
+build*
+tmp*
+test_data
 workspace
