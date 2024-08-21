@@ -54,7 +54,8 @@ Mat bilateralFilterOwn(Mat source, int diameter, double sigmaI, double sigmaS) {
 int main(int argc, char** argv ) {
     Mat src;
     src = imread( argv[1], 0 );
-    imwrite("original_image_grayscale.png", src);
+    imwrite("original_image.png", src);
+    
 
     if ( !src.data )
     {
@@ -64,9 +65,13 @@ int main(int argc, char** argv ) {
 
     Mat filteredImageOpenCV;
     bilateralFilter(src, filteredImageOpenCV, 5, 12.0, 16.0);
-    imwrite("filtered_image_OpenCV.png", filteredImageOpenCV);
+    imwrite("OpenCV_Output.png", filteredImageOpenCV);
     Mat filteredImageOwn = bilateralFilterOwn(src, 5, 12.0, 16.0);
-    imwrite("filtered_image_own.png", filteredImageOwn);
+    if(argc < 3) {
+        imwrite("filtered_image_own.png", filteredImageOwn);
+    } else {
+        imwrite(argv[2], filteredImageOwn);
+    }
 
     return 0;
 }
